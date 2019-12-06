@@ -26,8 +26,11 @@ app.use(expressValidator());
 app.use(cors());
 
 const authRoutes = require('./routes/auth');
+const postRoutes = require('./routes/post');
 
 app.use('/api', authRoutes);
+app.use('/api', postRoutes);
+
 
 const port = process.env.PORT
 app.listen(port, () => {
