@@ -39,13 +39,21 @@ const Menu = ({history}) => {
               </Fragment>
               )}
               {isAuthenticated() && (
-                <NavItem>
-                  <NavLink tag={Link} to="/signin" onClick={()=>
-                  signout(() => {
-                    history.push('/');
-                  })}>
-                  <FontAwesomeIcon icon={faPowerOff}/></NavLink>
-               </NavItem> 
+                <Fragment>
+                  <NavItem>
+                    <NavLink tag={Link} to="/addpost">Ajouter une publication</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={Link} to="/user/dashboard">Mon Compte</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={Link} to="/signin" onClick={()=>
+                    signout(() => {
+                      history.push('/');
+                    })}>
+                    <FontAwesomeIcon icon={faPowerOff}/></NavLink>
+                </NavItem> 
+               </Fragment>
               )}
             </Nav>
           </Collapse>

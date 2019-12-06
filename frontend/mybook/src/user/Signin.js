@@ -57,7 +57,7 @@ const Signin = () => {
     const redirectUser = () => {
         if (redirectToReferrer) {
             if(user) {
-                return <Redirect to = '/user/dashboard' />
+                return <Redirect to = '/' />
             }
         }
         if(isAuthenticated()) {
