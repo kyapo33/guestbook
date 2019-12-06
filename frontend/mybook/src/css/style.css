@@ -1,0 +1,26 @@
+.signup {
+    padding-top: 5%;
+}
+.signupform {
+    margin-top: 400%;
+    background: #ffffff none repeat scroll 0 0;
+    border-radius: 20px;
+    margin: 10px auto 30px;
+    width: 38%;
+    padding: 50px 70px 70px 71px; 
+    border: 1px solid #d4d4d4;  
+}
+.signupform .btn {
+    display: block;
+    margin: 0 auto;
+}
+.signupform .form-group {
+    padding-top: 5%;
+}
+
+@media (max-width: 768px) {
+    .signupform {
+        min-width: 80%;
+    }
+}
+
