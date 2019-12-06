@@ -16,7 +16,7 @@ controller.getById = async (req, res, next, id) => {
             .exec()
         if(!post) {
             return res.status(400).json({
-                error: 'Aucun message trouvé'
+                error: 'Aucun messages trouvé'
             })   
         }
         req.post = post;
@@ -24,7 +24,7 @@ controller.getById = async (req, res, next, id) => {
     }
     catch (err) {
         return res.status(400).json({
-            error: 'Aucun message trouvé'
+            error: 'Aucun messages trouvé'
         })  
     }
 }
@@ -137,6 +137,27 @@ controller.edit = async (req, res) => {
         })   
     }      
 }
+
+controller.postsByUser = async (req, res) => {
+    try {
+        const data = await Post.find({ postedBy: req.profile._id })
+        .populate('postedBy', '_id name')
+        .select('_id title body created likes')
+        .sort({ created: -1 })
+        .exec() 
+        if(!data) {
+            return res.status(400).json({
+                error: 'Aucun messages trouvé'
+            })   
+        }
+        return res.send(data)
+    }
+    catch (err) {
+        return res.status(400).json({
+            error: 'Aucun messages trouvés'
+        })
+    }        
+};
 
 module.exports = controller;
 

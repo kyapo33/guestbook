@@ -8,6 +8,7 @@ const auth = require('../controllers/auth')
 router.post('/create/post/:userId', auth.requireSignIn, auth.isAuth, post.create);
 router.get('/post', post.list);
 router.get('/post/:postId', post.read);
+router.get('/post/user/:userId', auth.requireSignIn, auth.isAuth, post.postsByUser);
 router.delete('/post/:postId/:userId', auth.requireSignIn, auth.isAuth, post.remove);
 router.put('/edit/:postId/:userId', auth.requireSignIn, auth.isAuth, post.edit);
 router.get('/photo/:postId', post.photo);
