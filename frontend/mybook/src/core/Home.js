@@ -4,6 +4,8 @@ import {getPosts} from '../core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart } from '@fortawesome/free-solid-svg-icons'
 import moment from 'moment'
+import 'moment/locale/fr';
+import { API_URL } from "../Config"
 
 const Home = () => {
 
@@ -44,12 +46,12 @@ const Home = () => {
                 </div>
                 <div className="card-body">
                     <div className="text-muted h7 mb-2">{moment(p.created).fromNow()}</div>
+                    <img className="img img-fluid" style={{maxHeight: '150px', width:'auto'}} src={`${API_URL}/photo/${p._id}`}/>
                     <p className="card-text">
                         {p.body}
                     </p>
                 </div>
                 <div className="card-footer">
-                    <span className="card-link"><FontAwesomeIcon icon={faHeart}/> Like</span>
                     <span className="card-link"><FontAwesomeIcon icon={faComment}/> Comment</span>
                 </div>
             </div>
