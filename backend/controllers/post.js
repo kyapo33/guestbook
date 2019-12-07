@@ -11,8 +11,7 @@ controller.getById = async (req, res, next, id) => {
         const post = await Post.findById(id)
             .populate('postedBy', '_id name')
             .populate('comments.postedBy', '_id name')
-            .populate('postedBy', '_id name')
-            .select('_id title body created likes comments photo')
+            .select('_id body created comments photo')
             .exec()
         if(!post) {
             return res.status(400).json({
@@ -73,12 +72,11 @@ controller.create = async (req, res) => {
 controller.list = async(req, res) => {
     try {
         const data = await Post.find()
-            .populate("postedBy", "_id name")
-            .populate("comments", "text created")
-            .populate("comments.postedBy", "_id name")
-            .select("_id title body created likes")
+            .populate('postedBy', '_id name')
+            .populate('comments.postedBy', '_id name')
+            .select('_id title body created comments photo')
             .sort({ created: -1 })
-            .exec(); 
+            .exec()
         return res.send(data)        
     }
     catch (err) {
@@ -157,6 +155,28 @@ controller.postsByUser = async (req, res) => {
             error: 'Aucun messages trouvés'
         })
     }        
+};
+
+controller.comment = async (req, res) => {
+    let comment = req.body.comment;
+    comment.postedBy = req.body.userId;
+    try {
+        const result = await Post.findByIdAndUpdate(req.body.postId, { $push: { comments: comment } }, { new: true })
+        .populate('comments.postedBy', '_id name')
+        .populate('postedBy', '_id name')
+        .exec()
+        if(!result) {
+            return res.status(400).json({
+                error: 'Aucun commentaires'
+            })   
+        }
+        return res.send(result)   
+    }
+    catch (err) {
+        return res.status(400).json({
+            error: 'Aucun commentaires trouvés'
+        })
+    }         
 };
 
 module.exports = controller;

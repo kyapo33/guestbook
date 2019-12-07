@@ -17,6 +17,119 @@
 .signupform .form-group {
     padding-top: 5%;
 }
+/**
+ * Oscuro: #283035
+ * Azul: #03658c
+ * Detalle: #c7cacb
+ * Fondo: #dee1e3
+ ----------------------------------*/
+
+/** ====================
+* Lista de Comentarios
+=======================*/
+.comments-container {
+   width: 85%;
+}
+
+.comments-container h1 {
+   font-size: 36px;
+   color: #283035;
+   font-weight: 400;
+}
+
+.comments-container h1 a {
+   font-size: 18px;
+   font-weight: 700;
+}
+
+/**
+* Lineas / Detalles
+-----------------------*/
+
+
+
+
+
+
+.comments-list li {
+   margin-bottom: 15px;
+   display: block;
+   position: relative;
+}
+
+
+
+
+/**
+* Avatar
+---------------------------*/
+
+
+
+/**
+* Caja del Comentario
+---------------------------*/
+.comments-list .comment-box {
+   position: relative;
+   -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+   -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+   box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+}
+
+
+
+
+
+
+.comment-box .comment-head {
+   background: #FCFCFC;
+   padding: 10px 12px;
+   border-bottom: 1px solid #E5E5E5;
+   overflow: hidden;
+   -webkit-border-radius: 4px 4px 0 0;
+   -moz-border-radius: 4px 4px 0 0;
+   border-radius: 4px 4px 0 0;
+}
+
+
+
+.comment-box .comment-head i:hover {
+   color: #03658c;
+}
+
+.comment-box .comment-name {
+   color: #283035;
+   font-size: 14px;
+   font-weight: 700;
+   float: left;
+   margin-right: 10px;
+}
+
+
+.comment-box .comment-head span {
+   float: left;
+   color: #999;
+   font-size: 13px;
+   position: relative;
+   top: 1px;
+}
+
+.comment-box .comment-content {
+   background: #FFF;
+   padding: 12px;
+   font-size: 15px;
+   color: #595959;
+   -webkit-border-radius: 0 0 4px 4px;
+   -moz-border-radius: 0 0 4px 4px;
+   border-radius: 0 0 4px 4px;
+}
+
+
+
+/** =====================
+* Responsive
+========================*/
+
 
 @media (max-width: 768px) {
     .signupform {

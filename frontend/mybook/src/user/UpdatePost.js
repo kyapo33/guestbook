@@ -20,7 +20,7 @@ const UpdatePost = ({match}) => {
         try {
             const data = await singlePost(postId);
             if(data.error) {
-                return console.log(data.error)
+                return setValues(data.error)
             } else {
                return setValues({...values, body: data.body, formData: new FormData() });
             }

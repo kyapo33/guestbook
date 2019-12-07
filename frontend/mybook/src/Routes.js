@@ -7,6 +7,7 @@ import PrivateRoute from './auth/PrivateRoute'
 import Dashboard from './user/UserDashboard'
 import AddPost from './user/AddPost'
 import UpdatePost from './user/UpdatePost'
+import Comment from './core/Comment'
 
 const Routes = () => {
     return (
@@ -18,6 +19,7 @@ const Routes = () => {
                 <PrivateRoute path = "/user/dashboard" exact component= {Dashboard}/>
                 <PrivateRoute path = "/addpost" exact component= {AddPost}/>
                 <PrivateRoute path = "/edit/post/:postId" exact component= {UpdatePost}/>
+                <PrivateRoute path = "/post/:postId" exact component= {Comment}/>
             </Switch>
         </BrowserRouter>
     );     

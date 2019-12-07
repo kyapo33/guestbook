@@ -36,7 +36,7 @@ const AddPost = () => {
             if (data.error) {
                 return setValues({ ...values, error: data.error });
             } else {
-                setValues({ ...values, body:'', error: '', success: `Le message a bien été posté` });
+                return setValues({ ...values, body:'', error: '', success: `Le message a bien été posté` });
             } 
         }
         catch (err) {

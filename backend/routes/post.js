@@ -12,6 +12,7 @@ router.get('/post/user/:userId', auth.requireSignIn, auth.isAuth, post.postsByUs
 router.delete('/post/:postId/:userId', auth.requireSignIn, auth.isAuth, post.remove);
 router.put('/edit/:postId/:userId', auth.requireSignIn, auth.isAuth, post.edit);
 router.get('/photo/:postId', post.photo);
+router.put('/post/comment', auth.requireSignIn, post.comment);
 
 router.param("postId", post.getById)
 router.param("userId", user.userById)
