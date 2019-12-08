@@ -1,5 +1,6 @@
 import { API_URL } from "../Config"
 
+// api call to get all posts
 export const getPosts = async () => {
     try {
         const response = await fetch(`${API_URL}/post`, {
@@ -12,6 +13,7 @@ export const getPosts = async () => {
     }
 }
 
+// api call to insert comment
 export const insertComment = async (userId, token, postId, comment) => {
     try {
         const response = await fetch(`${API_URL}/post/comment`, {

@@ -12,11 +12,12 @@ const Home = () => {
     const [posts, setPosts] = useState('')
     const [showComments, setShowComments] = useState(false); 
 
+    // api call to get all posts
     const loadPosts = async () => {
         try {
             const data = await getPosts(); 
             if(data.error) {
-                return console.log(data.error)
+                return setPosts(data.error)
             } else {
                 return setPosts(data)
             }
@@ -26,6 +27,7 @@ const Home = () => {
         }  
     }
 
+    // load the posts when the component mount
     useEffect(() => {
         loadPosts()
     }, []);
@@ -67,9 +69,7 @@ const Home = () => {
                                 <span class="text-muted pull-right">
                                     <small class="text-muted ml-2">{moment(c.created).fromNow()}</small>
                                 </span>
-                                <p>
-                                    {c.text}
-                                </p>
+                                <p>{c.text}</p>
                             </div>
                         </li>
                     </ul>

@@ -16,19 +16,23 @@ const AddPost = () => {
 
     const {error, success, body, formData} = values
 
+    // initialize values when the component mount
     useEffect(() => {
         setValues({...values, formData: new FormData()});
     // eslint-disable-next-line 
     }, []);
 
+    // handle form change
     const handleChange = name => e => {
         const value = name === 'photo' ? e.target.files[0] : e.target.value;
         formData.set(name, value);
         setValues({ ...values, [name]: value, formData, error: '' });
     };
 
+    // get user and token form localstorage
     const {user, token} = isAuthenticated();
 
+    // use api call to post
     const publish = async (e) => {
         e.preventDefault();
         try {
@@ -44,22 +48,26 @@ const AddPost = () => {
         }
     };
 
+    // display a message if error
     const showError = () => (
         <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
             {error}
         </div>
     );
 
+    // display a message if success
     const showSuccess = () => (
         <div className="alert alert-success" style={{ display: success ? '' : 'none' }}>
             {success}
         </div>
     );
-
+    
+    // make first letter capital
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    // display the form and remove it if success
     const newPostForm = () => {
         if(!success) {
             return (

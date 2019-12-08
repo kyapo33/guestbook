@@ -1,5 +1,6 @@
 import { API_URL } from "../Config"
 
+// api call to get one user
 export const read = async (userId, token) => {
     try {
         const response = await fetch(`${API_URL}/user/${userId}`, {
@@ -17,6 +18,7 @@ export const read = async (userId, token) => {
     }
 };
 
+// api call to get one post
 export const singlePost = async (postId) => {
     try {
         const response = await fetch(`${API_URL}/post/${postId}`, {

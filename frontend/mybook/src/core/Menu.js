@@ -16,50 +16,50 @@ const Menu = ({history}) => {
 
   const [isOpen, setIsOpen] = useState(false);
   
-    const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => setIsOpen(!isOpen);
   
-    return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand tag={Link} to="/">Guestbook</NavbarBrand>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+  return (
+    <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand tag={Link} to="/">Guestbook</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+              <NavItem>
+                  <NavLink tag={Link} to="/">Accueil</NavLink>
+              </NavItem>
+              {!isAuthenticated() && (
+              <Fragment>
                 <NavItem>
-                    <NavLink tag={Link} to="/">Accueil</NavLink>
+                  <NavLink tag={Link} to="/signin">Se connecter</NavLink>
                 </NavItem>
-                {!isAuthenticated() && (
-                <Fragment>
-                  <NavItem>
-                    <NavLink tag={Link} to="/signin">Se connecter</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink tag={Link} to="/signup">S'inscrire</NavLink>
-                  </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} to="/signup">S'inscrire</NavLink>
+                </NavItem>
+            </Fragment>
+            )}
+            {isAuthenticated() && (
+              <Fragment>
+                <NavItem>
+                  <NavLink tag={Link} to="/addpost">Ajouter une publication</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} to="/user/dashboard">Mon compte</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={Link} to="/signin" onClick={()=>
+                  signout(() => {
+                    history.push('/');
+                  })}>
+                  <FontAwesomeIcon icon={faPowerOff}/></NavLink>
+              </NavItem> 
               </Fragment>
-              )}
-              {isAuthenticated() && (
-                <Fragment>
-                  <NavItem>
-                    <NavLink tag={Link} to="/addpost">Ajouter une publication</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink tag={Link} to="/user/dashboard">Mon compte</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink tag={Link} to="/signin" onClick={()=>
-                    signout(() => {
-                      history.push('/');
-                    })}>
-                    <FontAwesomeIcon icon={faPowerOff}/></NavLink>
-                </NavItem> 
-               </Fragment>
-              )}
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    );
-  }
+            )}
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
+}
   
 export default withRouter(Menu);

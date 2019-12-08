@@ -6,6 +6,7 @@ import {FormText, Button, Form, FormGroup, Input} from 'reactstrap';
 import SocialLogin from "./SocialLogin";
 
 const Signin = () => {
+
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -14,12 +15,16 @@ const Signin = () => {
     })
 
     const { name, email, password, loading, error, redirectToReferrer} = values
+
+    // get user information from localstorage
     const {user} = isAuthenticated();
 
+    // handle the form change
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value})
     };
 
+    // use api call to login
     const clickSubmit = async (event) => {
         event.preventDefault();
         setValues({...values, error : false, loading: true})
@@ -40,7 +45,8 @@ const Signin = () => {
             console.log(err);
         }   
     };
-   
+    
+    // display a message if error
     const showError = () => (
         <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
             {error}
@@ -54,7 +60,8 @@ const Signin = () => {
         </div>
         )
     )
-
+    
+    // redirect the user if login is successfull
     const redirectUser = () => {
         if (redirectToReferrer) {
             if(user) {
@@ -66,6 +73,7 @@ const Signin = () => {
         }
     }
 
+    // show the login form
     const signInForm = () => (
         <div className="signup">
             <Form className="signupform">

@@ -1,5 +1,6 @@
 import { API_URL } from "../Config"
 
+// api call register
 export const signup = async user => {
     try {
         const response = await fetch(`${API_URL}/register`, {
@@ -17,6 +18,7 @@ export const signup = async user => {
     }
 };
 
+// api call login
 export const signin = async user => {
     try {
         const response = await fetch(`${API_URL}/login`, {
@@ -34,6 +36,7 @@ export const signin = async user => {
     }
 };
 
+// store user information in localstorage
 export const authenticate = (data, next) => {
     if(typeof window !== 'undefined') {
         localStorage.setItem ('jwt', JSON.stringify(data))
@@ -41,6 +44,7 @@ export const authenticate = (data, next) => {
     }
 };
 
+// api call logout
 export const signout = async (next) => {
     if(typeof window !== 'undefined') {
         localStorage.removeItem ('jwt')
@@ -57,6 +61,7 @@ export const signout = async (next) => {
     }   
 };
 
+// check if user information are in localstorage
 export const isAuthenticated = () => {
     if(typeof window == 'undefined') {
         return false    
@@ -68,6 +73,7 @@ export const isAuthenticated = () => {
     }
 }
 
+// api call social login
 export const socialLog = async (user)=> {
     try {
         const response = await fetch(`${API_URL}/social-login/`, {

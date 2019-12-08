@@ -10,7 +10,8 @@ class SocialLogin extends Component {
             redirectToReferrer: false
         };
     }
- 
+    
+    // get google response
     responseGoogle = async response => {
         console.log(response);
         const { googleId, name, email, imageUrl } = response.profileObj;
@@ -20,14 +21,12 @@ class SocialLogin extends Component {
             email: email,
             imageUrl: imageUrl
         };
-        // console.log("user obj to social login: ", user);
+        // api call to log with google
         try {
             const data = await socialLog(user)
-            console.log("signin data: ", data);
             if (data.error) {
-                console.log("Error Login. Please try again..");
+                console.log("Erreur d'authentification...");
             } else {
-                console.log("signin success - setting jwt: ", data);
                 authenticate(data, () => {
                     return this.setState({ redirectToReferrer: true });
                 });
@@ -39,16 +38,17 @@ class SocialLogin extends Component {
     };
  
     render() {
-        // redirect
+        // redirect if login is succesfull
         const { redirectToReferrer } = this.state;
         if (redirectToReferrer) {
             return <Redirect to="/" />;
         }
  
         return (
+            // google oauth parameters
             <GoogleLogin
                 clientId='819303239393-o9ou82osqvn57vodo3n8agua4stiv6k2.apps.googleusercontent.com'
-                buttonText="Login with Google"
+                buttonText="S'identifier avec Google"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}
             />

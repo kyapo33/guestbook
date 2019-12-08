@@ -17,11 +17,12 @@ const Comment = ({match}) => {
 
     const {text} = values
 
+    // use api call to get a post
     const loadPost = async (postId) => {
         try {
             const data = await singlePost(postId);
             if(data.error) {
-                return console.log(data.error)
+                return setPost(data.error)
             } else {
                return setPost({body: data.body, user: data.postedBy.name, ifImg: data.checkimg, photo: data._id, date: data.created, comment: data.comments});
             }
@@ -31,14 +32,17 @@ const Comment = ({match}) => {
         }   
     }
 
+    // load the post when the component mount
     useEffect(() => {
         loadPost(match.params.postId)
     // eslint-disable-next-line 
     }, []);
 
+    // get token and user information from localstorage
     const user = isAuthenticated().user
     const token = isAuthenticated().token 
 
+    // use api call to insert a comment
     const addComment = async (e) => {
         e.preventDefault();
         setValues({...values, error : false})
@@ -56,10 +60,12 @@ const Comment = ({match}) => {
         }
     };
 
+    // handle form change
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value})
     };
 
+    // make first letter capital
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }

@@ -22,8 +22,7 @@ const Routes = () => {
                 <PrivateRoute path = "/post/:postId" exact component= {Comment}/>
             </Switch>
         </BrowserRouter>
-    );     
-    
+    );        
 };
 
 export default Routes;

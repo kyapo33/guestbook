@@ -16,6 +16,7 @@ const UpdatePost = ({match}) => {
 
     const {error, success, body, formData} = values
 
+    // use api call to get one post
     const loadPost = async (postId) => {
         try {
             const data = await singlePost(postId);
@@ -30,24 +31,29 @@ const UpdatePost = ({match}) => {
         }   
     }
 
+    // load the post and initialize the form when the component mount
     useEffect(() => {
         loadPost(match.params.postId)
         setValues({...values, formData: new FormData()});
     // eslint-disable-next-line 
     }, []);
 
+    // handle the form change
     const handleChange = name => e => {
         const value = name === 'photo' ? e.target.files[0] : e.target.value;
         formData.set(name, value);
         setValues({ ...values, [name]: value, formData, error: '' });
     };
 
+    // make the first letter capital
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    // get user information and token from localstorage
     const {user, token} = isAuthenticated();
 
+    // use api call to update a post
     const update = async (e) => {
         e.preventDefault();
         const data = await editPost(formData, token, match.params.postId, user._id);
@@ -58,18 +64,21 @@ const UpdatePost = ({match}) => {
         }
     };
 
+    // display a message if error
     const showError = () => (
         <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
             {error}
         </div>
     );
 
+    // display a message if error
     const showSuccess = () => (
         <div className="alert alert-success" style={{ display: success ? '' : 'none' }}>
             {success}
         </div>
     );
 
+    // show the form
     const newPostForm = () => ( 
         <Fragment>
             <div className="row bootstrap mt-3 snippets">

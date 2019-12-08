@@ -18,10 +18,12 @@ const Signup = () => {
 
     const {name, email, password, success, error} = values
 
+    // handle the form change
     const handleChange = name => event => {
         setValues({...values, error: false, [name]: event.target.value})
     };
 
+    // use api call to register
     const clickSubmit = async (event) => {
         event.preventDefault();
         setValues({...values, error : false})
@@ -45,18 +47,21 @@ const Signup = () => {
         } 
     }
 
+    // show a message if error
     const showError = () => (
         <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
             {error}
         </div>
     )
     
+    // show a message if error
     const showSuccess = () => ( 
         <div className="alert alert-success" style={{display: success ? '' : 'none'}}>
             <p>Votre compte a bien été créé <Link to='/signin'>connectez-vous</Link></p>  
         </div>
     )
 
+    // redirect the user if is already logged
     const redirectUser = () => {
         if(isAuthenticated()) {
             return <Redirect to = '/'/>
@@ -64,10 +69,12 @@ const Signup = () => {
       
     }
 
+    // make first letter capital
     const capitalize = (str) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    // show the register form
     const signUpForm = () => (
         <div className="signup">
             <Form className="signupform">
@@ -97,4 +104,5 @@ const Signup = () => {
         </div> 
     );
 }
+
 export default Signup;

@@ -11,15 +11,18 @@ const Dashboard = () => {
 
     const [posts, setPosts] = useState([])
 
+    // get user information from localstorage
     const { user: { _id, name} } = isAuthenticated();
 
+    // get token from database
     const token = isAuthenticated().token
 
+    // use api call to get posts by user
     const loadPostsByUser = async (userId, token) => {
         try {
             const data = await getPostsByUser(userId, token);
             if(data.error) {
-                console.log(data.error)
+                setPosts(data.error)
             } else {
                 setPosts(data)
             }
@@ -29,8 +32,10 @@ const Dashboard = () => {
         }     
     }
 
+    // get user information from localstorage
     const user = isAuthenticated().user
 
+    // use api call to delete a post
     const removePost = async (postId) => {
         try {
             const data = await deletePost(postId, user._id, token);
@@ -45,10 +50,12 @@ const Dashboard = () => {
         }     
     }
 
+    // load the posts when the component mount
     useEffect(() => {
         loadPostsByUser(_id, token)
     }, [_id, token])
 
+    // show a confirmation window
     const deleteConfirm = postId => {
         let answer = window.confirm('Voulez-vous supprimer ce message ?');
         if (answer) {
@@ -56,6 +63,7 @@ const Dashboard = () => {
         }
     };
 
+    // show user information
     const userLinks = () => {
         return (
             <div className = "card card-links mb-3 mt-3">
@@ -64,6 +72,7 @@ const Dashboard = () => {
         )
     };
 
+    // show user posts
     const userPosts = () => {
         return (
             <div className="card card-order">
@@ -118,7 +127,6 @@ const Dashboard = () => {
             </div>
         </Fragment>
     )  
-
 }
 
 export default Dashboard;
