@@ -66,8 +66,8 @@ const Home = () => {
                         <li className="media">
                             <div className="media-body">
                                 <strong className="text-info">{c.postedBy.name}</strong>
-                                <span className="text-muted pull-right">
-                                    <small classNames="text-muted ml-2">{moment(c.created).fromNow()}</small>
+                                <span className="text-muted pull-right ml-2">
+                                    <small classNames="text-muted ml-4">{moment(c.created).fromNow()}</small>
                                 </span>
                                 <p>{c.text}</p>
                             </div>
