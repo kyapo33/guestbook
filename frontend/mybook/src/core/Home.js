@@ -61,13 +61,13 @@ const Home = () => {
                 <button onClick={() => setShowComments(showComments === p._id ? false : p._id)} style={{display: p.comments.length > 0 ? '' : 'none'}} className="card-link ml-2 btn btn-info">Voir les commentaires</button>  
                 </div>
                 {showComments  === p._id && p.comments && p.comments.map((c,i) => (
-                <div class="comment-wrapper mt-3 container"key={i}>
-                     <ul class="media-list">
-                        <li class="media">
-                            <div class="media-body">
-                                <strong class="text-info">{c.postedBy.name}</strong>
-                                <span class="text-muted pull-right">
-                                    <small class="text-muted ml-2">{moment(c.created).fromNow()}</small>
+                <div className="comment-wrapper mt-3 container"key={i}>
+                     <ul classNames="media-list">
+                        <li className="media">
+                            <div className="media-body">
+                                <strong className="text-info">{c.postedBy.name}</strong>
+                                <span className="text-muted pull-right">
+                                    <small classNames="text-muted ml-2">{moment(c.created).fromNow()}</small>
                                 </span>
                                 <p>{c.text}</p>
                             </div>

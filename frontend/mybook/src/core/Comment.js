@@ -96,13 +96,13 @@ const Comment = ({match}) => {
                     <div className="comment-wrapper container">
                         <div className="panel panel-info">
                             <div className="panel-body">
-                                <textarea type="text" onChange={handleChange('text')} name="body" value={capitalize(text)} class="form-control" placeholder="Ajouter un commentaire..." rows="3"></textarea>
+                                <textarea type="text" onChange={handleChange('text')} name="body" value={capitalize(text)} className="form-control" placeholder="Ajouter un commentaire..." rows="3"></textarea>
                                 <br></br>
-                                <button type="button" onClick={addComment} style={{display: text.length > 0 ? '' : 'none'}} class="btn btn-info pull-right">Publier</button>
+                                <button type="button" onClick={addComment} style={{display: text.length > 0 ? '' : 'none'}} className="btn btn-info pull-right">Publier</button>
                                 <div className="clearfix"></div>
                                 <hr></hr>
                                 {post.comment && post.comment.map((c,i) => (
-                                <ul className="media-list">
+                                <ul className="media-list" key={i}>
                                     <li className="media">
                                         <div className="media-body">
                                             <strong className="text-info">{c.postedBy.name}</strong>

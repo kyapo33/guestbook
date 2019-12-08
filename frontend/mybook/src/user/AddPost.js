@@ -77,7 +77,7 @@ const AddPost = () => {
                             <div className="comment-wrapper container">
                                 <div className="panel panel-info">
                                     <div className="panel-body">
-                                        <textarea type="text" onChange={handleChange('body')} name="body" value={capitalize(body)} class="form-control" placeholder="Ajouter un message..." rows="3"></textarea>
+                                        <textarea type="text" onChange={handleChange('body')} name="body" value={capitalize(body)} className="form-control" placeholder="Ajouter un message..." rows="3"></textarea>
                                         <br></br>
                                         <Label className="btn btn-outline-info">
                                             Ajouter une image
@@ -85,7 +85,7 @@ const AddPost = () => {
                                         </Label>
                                         <br></br>
                                         <button onClick={publish} type="button" className="btn btn-info pull-right">Publier</button>
-                                        <div class="clearfix"></div>
+                                        <div className="clearfix"></div>
                                         <hr></hr>
                                     </div>
                                 </div>
