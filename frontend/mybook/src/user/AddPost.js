@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import Menu from '../core/Menu'
-import {Button, Form, FormGroup, Input, Label} from 'reactstrap';
+import {Input, Label} from 'reactstrap';
 import {isAuthenticated} from '../auth'
 import {createPost} from '.';
 
@@ -64,18 +64,26 @@ const AddPost = () => {
         if(!success) {
             return (
                 <Fragment>
-                    <Form className="" onSubmit={publish}>
-                        <FormGroup>
-                            <Input type="text" onChange={handleChange('body')} name="body" value={capitalize(body)} />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label className="btn btn-outline-info">
-                                Ajouter une image
-                                <Input onChange={handleChange('photo')} type="file" accept="image/*" hidden />
-                            </Label>
-                        </FormGroup>
-                        <Button color="info">Publier</Button>
-                    </Form>
+                    <div className="row bootstrap mt-3 snippets">
+                        <div className="col-md-12 col-md-offset-2 col-sm-12">
+                            <div className="comment-wrapper container">
+                                <div className="panel panel-info">
+                                    <div className="panel-body">
+                                        <textarea type="text" onChange={handleChange('body')} name="body" value={capitalize(body)} class="form-control" placeholder="Ajouter un message..." rows="3"></textarea>
+                                        <br></br>
+                                        <Label className="btn btn-outline-info">
+                                            Ajouter une image
+                                            <Input onChange={handleChange('photo')} type="file" accept="image/*" hidden />
+                                        </Label>
+                                        <br></br>
+                                        <button onClick={publish} type="button" className="btn btn-info pull-right">Publier</button>
+                                        <div class="clearfix"></div>
+                                        <hr></hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </Fragment>
             )
         }   

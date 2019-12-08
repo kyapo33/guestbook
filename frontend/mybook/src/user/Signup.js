@@ -5,6 +5,7 @@ import {signup} from '../auth'
 import {isAuthenticated} from '../auth'
 import {Redirect} from 'react-router-dom'
 import SocialLogin from "./SocialLogin";
+import { Link } from 'react-router-dom'
 
 const Signup = () => {
     const [values, setValues] = useState({
@@ -52,7 +53,7 @@ const Signup = () => {
     
     const showSuccess = () => ( 
         <div className="alert alert-success" style={{display: success ? '' : 'none'}}>
-            <p>Votre compte a bien été crée. Vérifiez votre boîte mail pour vous connecter</p>  
+            <p>Votre compte a bien été créé <Link to='/signin'>connectez-vous</Link></p>  
         </div>
     )
 

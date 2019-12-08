@@ -1,3 +1,4 @@
+// form validator for register form
 exports.userSignupValidator = (req, res, next) => {
     req.check('name', 'Un nom est requis' ).notEmpty()
     req.check('email', 'Email trop court')

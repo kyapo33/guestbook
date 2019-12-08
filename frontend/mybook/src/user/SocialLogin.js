@@ -47,7 +47,7 @@ class SocialLogin extends Component {
  
         return (
             <GoogleLogin
-                clientId="819303239393-o9ou82osqvn57vodo3n8agua4stiv6k2.apps.googleusercontent.com"
+                clientId='819303239393-o9ou82osqvn57vodo3n8agua4stiv6k2.apps.googleusercontent.com'
                 buttonText="Login with Google"
                 onSuccess={this.responseGoogle}
                 onFailure={this.responseGoogle}

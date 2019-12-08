@@ -77,7 +77,7 @@ const Signin = () => {
                 </FormGroup>
                 <FormGroup>
                     <Input onChange={handleChange('password')} type="password" name="password" id="examplePassword" placeholder="Mot de passe" value={password} />
-                    <FormText>Le Mot de passe doit être de minimun 8 lettres et doit contenir au moins un chiffre</FormText>
+                    <FormText>Le mot de passe doit être de minimun 8 lettres et doit contenir au moins un chiffre</FormText>
                 </FormGroup>
                 <Button onClick={clickSubmit} color="info">Se connecter</Button>
             </Form>

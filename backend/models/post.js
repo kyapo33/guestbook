@@ -11,6 +11,9 @@ const postSchema = new mongoose.Schema({
         data: Buffer,
         contenType: String
     },
+    checkimg: {
+        type: Boolean,
+    },
     postedBy: {
         type: ObjectId,
         ref: 'User'

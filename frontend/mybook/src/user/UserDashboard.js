@@ -9,7 +9,6 @@ import { API_URL } from "../Config"
 
 const Dashboard = () => {
 
-    const [showPosts, setShowPosts] = useState(false); 
     const [posts, setPosts] = useState([])
 
     const { user: { _id, name} } = isAuthenticated();
@@ -51,7 +50,7 @@ const Dashboard = () => {
     }, [_id, token])
 
     const deleteConfirm = postId => {
-        let answer = window.confirm('voulez vous supprimer ce message ?');
+        let answer = window.confirm('Voulez-vous supprimer ce message ?');
         if (answer) {
             removePost(postId);
         }
@@ -59,7 +58,7 @@ const Dashboard = () => {
 
     const userLinks = () => {
         return (
-            <div className = "card card-links mb-3">
+            <div className = "card card-links mb-3 mt-3">
                 <h4 className="card-header">Bonjour, {name}</h4>
             </div> 
         )
@@ -88,7 +87,7 @@ const Dashboard = () => {
                         </div>
                         <div className="card-body">
                             <div className="text-muted h7 mb-2">{moment(p.created).fromNow()}</div>
-                            <img className="img img-fluid" style={{maxHeight: '150px', width:'auto'}} src={`${API_URL}/photo/${p._id}`}/>
+                            {p.checkimg === true ? <img className="img img-fluid" style={{maxHeight: '150px', width:'auto'}} src={`${API_URL}/photo/${p._id}`} alt="post"/> : ''}
                             <p className="card-text">
                                 {p.body}
                             </p>

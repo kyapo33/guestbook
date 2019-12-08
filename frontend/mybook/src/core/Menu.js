@@ -31,7 +31,7 @@ const Menu = ({history}) => {
                 {!isAuthenticated() && (
                 <Fragment>
                   <NavItem>
-                    <NavLink tag={Link} to="/signin">Se Connecter</NavLink>
+                    <NavLink tag={Link} to="/signin">Se connecter</NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink tag={Link} to="/signup">S'inscrire</NavLink>
@@ -44,7 +44,7 @@ const Menu = ({history}) => {
                     <NavLink tag={Link} to="/addpost">Ajouter une publication</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink tag={Link} to="/user/dashboard">Mon Compte</NavLink>
+                    <NavLink tag={Link} to="/user/dashboard">Mon compte</NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink tag={Link} to="/signin" onClick={()=>

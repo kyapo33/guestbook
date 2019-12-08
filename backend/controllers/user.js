@@ -1,12 +1,10 @@
 const express = require('express')
 const controller = express.Router()
-const _ = require('lodash');
-const jwt = require("jsonwebtoken");
-const nodeMailer = require('nodemailer');
 require("dotenv").config();
 
 const User = require('../models/user')
 
+// get user id
 controller.userById = async (req, res, next, id) => {
     try {
         const user = await User.findById(id).exec()
@@ -19,12 +17,11 @@ controller.userById = async (req, res, next, id) => {
         next();
     }
     catch (err) {
-        return res.status(400).json({
-            error: 'Utilisateur non touvé'
-        })  
-    }
+        return console.log(err);
+    } 
 }
 
+// get one user
 controller.read = (req, res) => {
     req.profile.hash_password = undefined;
     req.profile.salt = undefined;

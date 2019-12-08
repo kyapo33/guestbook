@@ -6,7 +6,6 @@ import 'moment/locale/fr';
 import { API_URL } from "../Config"
 import { Link } from 'react-router-dom'
 import {isAuthenticated} from '../auth';
-import {Button, Form} from 'reactstrap';
 
 const Home = () => {
 
@@ -35,7 +34,7 @@ const Home = () => {
         <Fragment>
         <Menu/>
             {!isAuthenticated() && (
-                <div><p className="alert alert-danger mt-2 ml-2" >Vous devez être connecter pour laisser un message ou pour commenter</p></div>
+                <div><p className="alert alert-danger mt-2 ml-2" >Vous devez être connecté pour laisser un message ou pour commenter</p></div>
             )}
             {posts && posts.map((p,i) => (
                 <div className=" mt-3 container" key={i}>
@@ -50,7 +49,7 @@ const Home = () => {
                 </div>
                 <div className="card-body">
                     <div className="text-muted h7 mb-2">{moment(p.created).fromNow()}</div>
-                    <img className="img img-fluid" style={{maxHeight: '150px', width:'auto'}} src={`${API_URL}/photo/${p._id}`}/>
+                    {p.checkimg === true ? <img className="img img-fluid" style={{maxHeight: '150px', width:'auto'}} src={`${API_URL}/photo/${p._id}`} alt="post"/> : ''}
                     <p className="card-text">
                         {p.body}
                     </p>
@@ -60,26 +59,21 @@ const Home = () => {
                 <button onClick={() => setShowComments(showComments === p._id ? false : p._id)} style={{display: p.comments.length > 0 ? '' : 'none'}} className="card-link ml-2 btn btn-info">Voir les commentaires</button>  
                 </div>
                 {showComments  === p._id && p.comments && p.comments.map((c,i) => (
-                    <div key={i}>
-                        <div className="row mt-3">
-                            <div className="comments-container">
-                                <ul id="comments-list" className="comments-list">
-                                    <li>
-                                        <div className="comment-main-level">
-                                            <div className="comment-box">
-                                                <div className="comment-head">
-                                                    <h6 className="comment-name mt-2">{c.postedBy.name}</h6>
-                                                </div>
-                                                <div className="comment-content">
-                                                    <p>{c.text}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                <div class="comment-wrapper mt-3 container"key={i}>
+                     <ul class="media-list">
+                        <li class="media">
+                            <div class="media-body">
+                                <strong class="text-info">{c.postedBy.name}</strong>
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted ml-2">{moment(c.created).fromNow()}</small>
+                                </span>
+                                <p>
+                                    {c.text}
+                                </p>
                             </div>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
+                </div>
                 ))}
             </div>
             ))}

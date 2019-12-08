@@ -9,6 +9,7 @@ const cors = require('cors');
 var path = require('path');
 require("dotenv").config()
 
+// database connection
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -16,6 +17,7 @@ mongoose.connect(process.env.DATABASE, {
     useFindAndModify: false
 }).then(() => console.log('db connect'));
 
+// middelwares
 app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
@@ -25,6 +27,7 @@ app.use(cookieParser());
 app.use(expressValidator());
 app.use(cors());
 
+// routes
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
 const userRoutes = require('./routes/user');
@@ -33,6 +36,7 @@ app.use('/api', authRoutes);
 app.use('/api', postRoutes);
 app.use('/api', userRoutes);
 
+// port connection
 const port = process.env.PORT
 app.listen(port, () => {
     console.log('Server is running');

@@ -2,7 +2,6 @@ import React, {useState, useEffect, Fragment} from 'react'
 import Menu from './Menu'
 import {insertComment} from '../core'
 import { isAuthenticated } from "../auth";
-import {Button, Form, FormGroup, Input } from 'reactstrap';
 import {singlePost} from '../user';
 import moment from 'moment'
 import 'moment/locale/fr';
@@ -16,7 +15,7 @@ const Comment = ({match}) => {
         error: '',
     })
 
-    const {text, error} = values
+    const {text} = values
 
     const loadPost = async (postId) => {
         try {
@@ -24,7 +23,7 @@ const Comment = ({match}) => {
             if(data.error) {
                 return console.log(data.error)
             } else {
-               return setPost({body: data.body, user: data.postedBy.name, photo: data._id, date: data.created, comment: data.comments});
+               return setPost({body: data.body, user: data.postedBy.name, ifImg: data.checkimg, photo: data._id, date: data.created, comment: data.comments});
             }
         }
         catch (err) {
@@ -80,38 +79,42 @@ const Comment = ({match}) => {
                 </div>
                 <div className="card-body">
                     <div className="text-muted h7 mb-2">{moment(post.date).fromNow()}</div>
-                    <img className="img img-fluid" style={{maxHeight: '150px', width:'auto'}} src={`${API_URL}/photo/${post.photo}`}/>
+                    {post.ifImg === true ? <img className="img img-fluid" style={{maxHeight: '150px', width:'auto'}} src={`${API_URL}/photo/${post.photo}`} alt="post"/> : ''}
                     <p className="card-text">
                         {post.body}
                     </p>
                 </div>   
             </div>
-            <Form className="container" onSubmit={addComment}>
-                <FormGroup>
-                    <Input type="text" onChange={handleChange('text')} name="body" value={capitalize(text)} />
-                </FormGroup>
-                <Button style={{display: text.length > 0 ? '' : 'none'}} color="info">Publier</Button>
-            </Form>  
-            {post.comment && post.comment.map((c,i) => (
-            <div className="row mt-3 container" key={i}>
-                <div className="comments-container-single">
-                    <ul id="comments-list" className="comments-list">
-                        <li>
-                            <div className="comment-main-level">
-                                <div className="comment-box">
-                                    <div className="comment-head">
-                                        <h6 className="comment-name mt-2">{c.postedBy.name}</h6>
-                                    </div>
-                                    <div className="comment-content">
-                                        <p>{c.text}</p>
-                                    </div>
-                                </div>
+            <div className="row bootstrap snippets">
+                <div className="col-md-12 col-md-offset-2 col-sm-12">
+                    <div className="comment-wrapper container">
+                        <div className="panel panel-info">
+                            <div className="panel-body">
+                                <textarea type="text" onChange={handleChange('text')} name="body" value={capitalize(text)} class="form-control" placeholder="Ajouter un commentaire..." rows="3"></textarea>
+                                <br></br>
+                                <button type="button" onClick={addComment} style={{display: text.length > 0 ? '' : 'none'}} class="btn btn-info pull-right">Publier</button>
+                                <div className="clearfix"></div>
+                                <hr></hr>
+                                {post.comment && post.comment.map((c,i) => (
+                                <ul className="media-list">
+                                    <li className="media">
+                                        <div className="media-body">
+                                            <strong className="text-info">{c.postedBy.name}</strong>
+                                            <span className="text-muted pull-right">
+                                                <small className="text-muted ml-2">{moment(c.created).fromNow()}</small>
+                                            </span>
+                                            <p>
+                                                {c.text}
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                ))}    
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-            </div> 
-            ))}        
+            </div>        
         </Fragment>     
     )
 }
