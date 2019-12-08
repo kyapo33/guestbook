@@ -4,6 +4,7 @@ import {FormText, Button, Form, FormGroup, Input} from 'reactstrap';
 import {signup} from '../auth'
 import {isAuthenticated} from '../auth'
 import {Redirect} from 'react-router-dom'
+import SocialLogin from "./SocialLogin";
 
 const Signup = () => {
     const [values, setValues] = useState({
@@ -71,6 +72,7 @@ const Signup = () => {
             <Form className="signupform">
             {showSuccess()}
             {showError()}
+                <SocialLogin />
                 <FormGroup>
                     <Input onChange={handleChange('name')} type="text" name="nom" placeholder="Nom" value={capitalize(name)} />
                 </FormGroup>

@@ -61,25 +61,17 @@ const Dashboard = () => {
         return (
             <div className = "card card-links mb-3">
                 <h4 className="card-header">Bonjour, {name}</h4>
-                <ul className = "list-group">
-                    <li className="list-group-item links">
-                        <Link className="nav-link" style={{color: "#2ac1b7"}} to={`/profile/update/${_id}`}>
-                            Editer mon profil
-                        </Link>
-                    </li>                
-                </ul>     
             </div> 
         )
     };
 
     const userPosts = () => {
         return (
-            <div className="card card-order mb-5">
+            <div className="card card-order">
                 <table className="table table-order table-hover ">
                     <tbody>
                         <tr>
                             <td><h4>Mes Publications</h4></td>
-                            <td><p onClick={() => setShowPosts(!showPosts)} className="btn btn-sm button-order btn-info">Details</p> </td>
                         </tr> 
                     </tbody>
                 </table> 
@@ -114,15 +106,14 @@ const Dashboard = () => {
     return (
         <Fragment>
             <Menu />
-            <div className="userinterface">
+            <div className="container">
                 <div>
                     <div className="row">
-                        <div className="col-lg-3">
+                        <div className="col-lg-12">
                             {userLinks()}
-                        </div>
-                        <div className="col-lg-9" >
                             {userPosts()}
                         </div>
+                        
                     </div>
                 </div>
             </div>

@@ -60,22 +60,26 @@ const AddPost = () => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    const newPostForm = () => ( 
-        <Fragment>
-            <Form className="" onSubmit={publish}>
-                <FormGroup>
-                    <Input type="text" onChange={handleChange('body')} name="body" value={capitalize(body)} />
-                </FormGroup>
-                <FormGroup>
-                    <Label className="btn btn-outline-info">
-                        Ajouter une image
-                        <Input onChange={handleChange('photo')} type="file" accept="image/*" hidden />
-                    </Label>
-                </FormGroup>
-                <Button color="info">Publier</Button>
-            </Form>
-        </Fragment>
-    )
+    const newPostForm = () => {
+        if(!success) {
+            return (
+                <Fragment>
+                    <Form className="" onSubmit={publish}>
+                        <FormGroup>
+                            <Input type="text" onChange={handleChange('body')} name="body" value={capitalize(body)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label className="btn btn-outline-info">
+                                Ajouter une image
+                                <Input onChange={handleChange('photo')} type="file" accept="image/*" hidden />
+                            </Label>
+                        </FormGroup>
+                        <Button color="info">Publier</Button>
+                    </Form>
+                </Fragment>
+            )
+        }   
+    }
 
     return (
         <div>

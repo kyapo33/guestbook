@@ -67,3 +67,21 @@ export const isAuthenticated = () => {
         return false;
     }
 }
+
+export const socialLog = async (user)=> {
+    try {
+        const response = await fetch(`${API_URL}/social-login/`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user) 
+        });
+        console.log("signin response: ", response);
+        return response.json();
+    }
+    catch (err) {
+        return console.log(err);
+    }   
+};

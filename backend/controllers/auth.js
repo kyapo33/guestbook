@@ -3,6 +3,7 @@ const controller = express.Router()
 const jwt = require("jsonwebtoken");
 const expressJwt = require('express-jwt');
 const nodeMailer = require('nodemailer');
+const _ = require('lodash');
 require("dotenv").config();
 
 const User = require('../models/user')
@@ -65,5 +66,33 @@ controller.isAuth = (req, res, next) => {
     }
     next();
 }
+
+controller.socialLogin = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const user = await User.findOne({ email });
+        if(user) {
+            req.profile = user;
+            _.extend(user, req.body);
+            user.updated = Date.now();
+            user.save();  
+            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
+            res.cookie('t', token, {expire: new Date() + 9999})
+            const {_id, name } = user
+            return res.json({token, user: {_id, email, name } });    
+        } else {
+            const user = new User(req.body)
+            await user.save()
+            res.json({user});
+            const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
+            res.cookie('t', token, {expire: new Date() + 9999})
+            const {_id, name } = user
+            return res.json({token, user: {_id, email, name } });    
+        }
+    }
+    catch (err) {
+        return console.log(err);
+    }
+};
 
 module.exports = controller;

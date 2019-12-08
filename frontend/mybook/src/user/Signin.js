@@ -3,6 +3,7 @@ import Menu from '../core/Menu'
 import {Redirect} from 'react-router-dom'
 import {signin, authenticate, isAuthenticated} from '../auth'
 import {FormText, Button, Form, FormGroup, Input} from 'reactstrap';
+import SocialLogin from "./SocialLogin";
 
 const Signin = () => {
     const [values, setValues] = useState({
@@ -69,7 +70,8 @@ const Signin = () => {
         <div className="signup">
             <Form className="signupform">
             {showError()}
-            {showLoading()}
+            {showLoading()}   
+                <SocialLogin />
                 <FormGroup>
                     <Input onChange={handleChange('email')} type="email" name="email" id="exampleEmail" placeholder="Email" value={email} />
                 </FormGroup>

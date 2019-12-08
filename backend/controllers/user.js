@@ -31,20 +31,4 @@ controller.read = (req, res) => {
     return res.json(req.profile);
 }
 
-controller.update = async (req, res) => {
-    let user = req.profile;
-    user = _.extend(user, req.body); 
-    try {
-        await user.save()
-            user.hashed_password = undefined;
-            user.salt = undefined;
-        return res.json(user);
-    }
-    catch (err) {
-        return res.status(400).json({
-            error: 'Changement impossible'
-        });    
-    }
-};
-
 module.exports = controller;

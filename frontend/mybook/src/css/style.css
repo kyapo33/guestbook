@@ -31,6 +31,12 @@
    width: 85%;
 }
 
+.comments-container-single {
+    width: 85%;
+ }
+
+
+
 .comments-container h1 {
    font-size: 36px;
    color: #283035;
@@ -135,5 +141,11 @@
     .signupform {
         min-width: 80%;
     }
+}
+
+@media (min-width: 768px) {
+    .comments-container-single {
+        padding-left: 15%
+     }
 }
 

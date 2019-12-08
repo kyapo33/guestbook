@@ -26,7 +26,7 @@ const Menu = ({history}) => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
                 <NavItem>
-                    <NavLink tag={Link} to="/">Home</NavLink>
+                    <NavLink tag={Link} to="/">Accueil</NavLink>
                 </NavItem>
                 {!isAuthenticated() && (
                 <Fragment>

@@ -30,7 +30,7 @@ const Home = () => {
     useEffect(() => {
         loadPosts()
     }, []);
-    
+     
     return (
         <Fragment>
         <Menu/>
@@ -38,7 +38,7 @@ const Home = () => {
                 <div><p className="alert alert-danger mt-2 ml-2" >Vous devez être connecter pour laisser un message ou pour commenter</p></div>
             )}
             {posts && posts.map((p,i) => (
-                <div className="card gedf-card mt-3" key={i}>
+                <div className=" mt-3 container" key={i}>
                 <div className="card-header">
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="d-flex justify-content-between align-items-center">
@@ -57,11 +57,11 @@ const Home = () => {
                 </div>
                 <div className="card-footer">
                 <Link to={`/post/${p._id}`}><button className="card-link btn btn-info">Commenter</button></Link>
-                <button onClick={() => setShowComments(showComments === p._id ? false : p._id)} className="card-link ml-2 btn btn-info">Voir les commentaires</button>               
+                <button onClick={() => setShowComments(showComments === p._id ? false : p._id)} style={{display: p.comments.length > 0 ? '' : 'none'}} className="card-link ml-2 btn btn-info">Voir les commentaires</button>  
                 </div>
                 {showComments  === p._id && p.comments && p.comments.map((c,i) => (
                     <div key={i}>
-                        <div className="row">
+                        <div className="row mt-3">
                             <div className="comments-container">
                                 <ul id="comments-list" className="comments-list">
                                     <li>

@@ -68,8 +68,7 @@ const Comment = ({match}) => {
     return (
         <Fragment>
            <Menu/>   
-           {JSON.stringify(post)}   
-            <div className="card gedf-card mt-3">
+            <div className=" mt-3 container">
                 <div className="card-header">
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="d-flex justify-content-between align-items-center">
@@ -85,17 +84,17 @@ const Comment = ({match}) => {
                     <p className="card-text">
                         {post.body}
                     </p>
-                </div>
-                <Form className="" onSubmit={addComment}>
-                    <FormGroup>
-                        <Input type="text" onChange={handleChange('text')} name="body" value={capitalize(text)} />
-                    </FormGroup>
-                    <Button color="info">Publier</Button>
-                </Form>  
+                </div>   
             </div>
+            <Form className="container" onSubmit={addComment}>
+                <FormGroup>
+                    <Input type="text" onChange={handleChange('text')} name="body" value={capitalize(text)} />
+                </FormGroup>
+                <Button style={{display: text.length > 0 ? '' : 'none'}} color="info">Publier</Button>
+            </Form>  
             {post.comment && post.comment.map((c,i) => (
-            <div className="row" key={i}>
-                <div className="comments-container">
+            <div className="row mt-3 container" key={i}>
+                <div className="comments-container-single">
                     <ul id="comments-list" className="comments-list">
                         <li>
                             <div className="comment-main-level">
