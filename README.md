@@ -1,10 +1,10 @@
 # guestbook
 
-Place the .env file for backend in the backend folder and the .env file for front end in the frontend/mybook folder
+Place the .env file for backend in the backend folder and the .env file for the front end in the frontend/mybook folder
 
 For the backend to work: 
 
-npm intall then npm start in the backend folder
+npm install then npm start in the backend folder
 
 For the frontend to work
 
